@@ -1,5 +1,9 @@
 /*
 stack is a FIFO structure
+Which can push multiple elements into stack
+Then pop out the last-in element
+stack is mostly used in recurrsion
+Helping returning required value
 
 methods:
 push

@@ -1,4 +1,9 @@
 /*
+The reason of implemting a linked list is to use memry more effciently
+Unlike arrays, linked list doesn require reallocation when adding elements
+Instead, it creates a new node then change the pointers
+However, linked list has a worst case accessing time of O(n), conpared to O(1) in array
+
 Linked list is constructed by nodes, each node point to the next node
 The last node is point to zero
 public methods:

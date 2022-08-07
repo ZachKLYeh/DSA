@@ -1,4 +1,14 @@
-/*array list include several methods
+/*
+Array list is like a dynamic array
+When an array is full, it automatically double the size of the array
+Then reallocate the original array to new position
+The reason of implementing array list is to solve the inconvenice of array size limit
+
+Array is great of storing data, especially for read-only data
+The accessing time of any element is O(1)
+But reallcating require O(n), it may even exceed that because memory operation is expensive
+
+array list include several methods
 
 public methods:
     get
