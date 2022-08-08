@@ -48,13 +48,13 @@ private:
 public:
     int* data; // pointer to the array head element
     int heap_size; // current number of heap elements
+
     MinHeap(int cap = 10) {
         heap_size = 0;
         capacity = cap;
         data = new int[capacity];
     }
 
-    // Swap function input two refereuced integer
     void Swap(int &x, int &y) {
         int temp = x;
         x = y;
@@ -77,7 +77,7 @@ public:
         }
     }
 
-    // down adjust from position i, used in deletion and extraction
+    // down adjust from position i, used in extraction
     void DownAdjust(int i) {
         int l = LChild(i); //index of lchild
         int r = RChild(i); //index of rchild
@@ -108,7 +108,7 @@ public:
         UpAdjust(i);
     }
 
-    // since the key is decreased, we only need to do buttom up operation to keep heapify
+    // since the key is decreased, we only need to do buttom up operation to keep heap
     void DecreaseKey(int i, int value) {
         data[i] = value;
         UpAdjust(i);
