@@ -1,5 +1,6 @@
 /*
 Hashing is like a json file
+It consists of key-and-value pairs.
 {
     key   :   value
    "merry":   1999
@@ -7,18 +8,21 @@ Hashing is like a json file
    "tom"  :   2020
 }
 
-it is consists of key-and-value pairs.
-how do we allocate the memory?
-we allocate by using a hash function, which transfroms the key to hashmap index
-each index contain a node pointer which points to a node
+How do we allocate the memory?
+We allocate by using a hash function, which transfroms the key to hashmap index
+each index contain a node pointer which points to a node.
+We're using a simple hash function division, but to key must be an integer.
 
+hashindex = key % capacity;
+
+Example:
 Hash Table index:   0   |  1  |  2  |
 content:           node*|node*|node*|
 
 node:
-1. key
-2. value
-
+1. key(must be integer)
+2. value(can be any type)
+3. an empty node contains key = -1
 
 Insert:
 Inserting in to a hashmap
@@ -31,6 +35,12 @@ delete from a hashmap
 1. use key to find the hashed index
 2. check the node's key at the hahsed index
 3. if is the same then relace the node with empty node
+   else increase hashed index
+
+Get:
+1. use key to find the hahsed index
+2. check if the key is matched
+3. if is, set the &value
    else increase hashed index
 
 */
