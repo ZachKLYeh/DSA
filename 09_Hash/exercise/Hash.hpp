@@ -97,19 +97,21 @@ public:
         std::cout << "The key is not found\n";
     }
 
-    int GetValue(K key) {
+    void GetValue(K key, V& value) {
         int hashindex = HashFunction(key);
 
         while (map[hashindex] != NULL) {
             // if node in found
             if (map[hashindex]->key == key) {
-                return map[hashindex]->value;
+                value = map[hashindex]->value;
+                return;
             }
             else {
                 hashindex++;
             } 
         }
-        return -1;
+        std::cout << "key " << key << "is not found\n";
+        return;
     }
 
     bool Empty() {return size == 0;}

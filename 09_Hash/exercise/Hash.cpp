@@ -3,13 +3,14 @@
 using namespace std;
 
 int main() {
-    HashMap<int, int> hash;
+    HashMap<int, char> hash;
+    char value = '0';
     std::cout << "Insert 5 key/value pairs\n";
-    hash.Insert(13, 130);
-    hash.Insert(27, 270);
-    hash.Insert(36, 360);
-    hash.Insert(20, 200);
-    hash.Insert(40, 400);
+    hash.Insert(13, 'A');
+    hash.Insert(27, 'B');
+    hash.Insert(36, 'C');
+    hash.Insert(20, 'D');
+    hash.Insert(40, 'E');
     hash.Display();
     std::cout << "Is the hashmap empty?" << hash.Empty() << "\n";
     std::cout << "Size of hashmap: " << hash.Size()<< "\n";
@@ -19,8 +20,10 @@ int main() {
     std::cout << "Delete key 12\n";
     hash.Delete(12);
     hash.Display();
-    std::cout << "Get value at key 40 is: " << hash.GetValue(40) << "\n";
-    std::cout << "Get value at key 36 is: " << hash.GetValue(12) << "\n";
+    hash.GetValue(40, value);
+    std::cout << "Get value at key 40 is: " << value << "\n";
+    hash.GetValue(36, value);
+    std::cout << "Get value at key 36 is: " << value << "\n";
     std::cout << "Delete all elements\n";
     hash.Delete(40);
     hash.Delete(27);
