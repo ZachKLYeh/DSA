@@ -1,3 +1,17 @@
+/*
+Bubble sort is a sorting algorithm based on swapping
+At each iteration, we run through the vector and check two elements value
+Swap if the order is not correct.
+In each iteration, we can make at least one element at the end of vector sorted
+if there are n elements needs to be sorted
+So the worst case we need to make n^2 calculation
+Time complexity os O(n^2)
+
+For space complexity is O(n), bubble sort doesn't use any extra space.
+
+To avoid worst case, we added a bool swapped to see if there's swap operation within the iteration
+If not, it indicates that the vector is sorted, then we can break the loop;
+*/
 #include <iostream>
 #include <vector>
 
