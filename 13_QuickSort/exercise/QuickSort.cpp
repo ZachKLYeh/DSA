@@ -121,7 +121,7 @@ void QuickSort(vector<T>& vec) {
 int main(){
     vector<int> vec = {13, 26 ,4 ,1, 251, 4, 23, 2, 634, 2};
     QuickSort(vec);
-    cout << "Sorted array:\n;
+    cout << "Sorted array:\n";
     Print(vec);
 }
 

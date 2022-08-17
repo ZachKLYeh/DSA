@@ -1,77 +1,33 @@
-/* C++ implementation of QuickSort */
-#include <bits/stdc++.h>
-using namespace std;
-
-// A utility function to swap two elements
-void swap(int* a, int* b)
-{
-	int t = *a;
-	*a = *b;
-	*b = t;
+template <typename T>
+void merge(const vector<T>& data, vector<T>& out, const int s, const int M, const int N) {
+	//s&M指向兩個子集合相應的位置
+	//data是輸入的數列，out是輸出的數列
+	int i = s, j = M + 1, k = s;
+	while (i <= M && j <= N) { //兩個序列都還有數據
+		if (data[i] < data[j]) 
+			out[k++] = data[i++];
+		else
+			out[k++] = data[j++];
+	} //序列剩餘數據依次寫入目標序列
+	while (i <= M) 
+		out[k++] = data[i++];
+	while (j <= N) 
+		out[k++] = data[j++];
 }
 
-/* This function takes last element as pivot, places
-the pivot element at its correct position in sorted
-array, and places all smaller (smaller than pivot)
-to left of pivot and all greater elements to right
-of pivot */
-int partition (int arr[], int low, int high)
-{
-	int pivot = arr[high]; // pivot
-	int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
-
-	for (int j = low; j <= high - 1; j++)
-	{
-		// If current element is smaller than the pivot
-		if (arr[j] < pivot)
-		{
-			i++; // increment index of smaller element
-			swap(&arr[i], &arr[j]);
-		}
-	}
-	swap(&arr[i + 1], &arr[high]);
-	return (i + 1);
+template <typename T>
+void copy(const vector<T>& B, vector<T>& A, int s, int e) {
+	//拷貝B到A內；s,t為範圍
+	for (int i = s; i <= e; i++)
+		A[i] = B[i];
 }
 
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-	if (low < high)
-	{
-		/* pi is partitioning index, arr[p] is now
-		at right place */
-		int pi = partition(arr, low, high);
-
-		// Separately sort elements before
-		// partition and after partition
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
+template <typename T>
+void merge_sort(vector<T>& A, int s, int t) {
+	if (s == t) { return; } //代表已經排序好，可以直接傳回
+	merge_sort(A, s, (s + t) / 2); //解決此區間(s,(s + t) / 2)的遞迴問題
+	merge_sort(A, (s + t) / 2 + 1, t); //解決另一區間的問題
+	vector<T> B(A.size()); //定義數列B
+	merge(A, B, s, (s + t) / 2, t); //將A內的元素和B( s, (s + t) / 2, t)區間合併
+	copy(B, A, s, t); //拷貝B至A內可以保證排序好的數列不會再被動到
 }
-
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-	int i;
-	for (i = 0; i < size; i++)
-		cout << arr[i] << " ";
-	cout << endl;
-}
-
-// Driver Code
-int main()
-{
-	int arr[] = {10, 7, 8, 9, 1, 5};
-	int n = sizeof(arr) / sizeof(arr[0]);
-	quickSort(arr, 0, n - 1);
-	cout << "Sorted array: \n";
-	printArray(arr, n);
-	return 0;
-}
-
-// This code is contributed by rathbhupendra
-
-
