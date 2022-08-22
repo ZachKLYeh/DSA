@@ -1,0 +1,156 @@
+Notes about datastructure and algorithm
+Specific about time complexity
+
+---------Datastructure-----------------
+For each datastructure, we will do a small introduction, then discuss the pros and cons of it.
+
+1. Array list(Dynamic array) 
+   Array list is like a dynamic array
+   When an array is full, it automatically double the size of the array
+   Then reallocate the original array to new position
+   The reason of implementing array list is to solve the inconvenice of array size limit
+
+   Array is great of storing data, especially for read-only data
+   The accessing time of any element is O(1)
+   But reallcating require O(n), it may even exceed that because memory operation is expensive
+
+2. linked list
+   The reason of implemting a linked list is to use memry more effciently
+   Unlike arrays, linked list doesn require reallocation when adding elements
+   Instead, it creates a new node then change the pointers
+   However, linked list has a worst case accessing time of O(n), conpared to O(1) in array
+
+   Linked list is constructed by nodes, each node point to the next node
+   The last node is point to zero
+
+3. stack
+   stack is a FIFO structure
+   Which can push multiple elements into stack
+   Then pop out the last-in element
+   stack is mostly used in recurrsion
+   Helping returning required value
+
+4. queue
+    Array-based queue provide faster access to elements in the middle of queue.
+    Each operation takes O(1) at worst case.
+    But suffer from memory reallocation when the array can not be expanded.
+
+    List-based queue provide flexibility in changning queue size. 
+    Without reallocating memory space.
+    However, it suffered from accessing the elements in the middle of queue.
+    Worst case could be O(n)
+
+5. Tree
+   There are two main implementation of a binary tree
+   1. Array-based
+   the index of array is like this
+               A
+            /   \
+         B       C
+         /    \  /    \   
+         D    E  F    G
+
+   Array[] = {A, B, C, D, E, F, G}
+
+   Pros: fast access to tree elements
+   Cons: waste of memory when not saving full binary tree
+         when the tree expands, it may need to reallocte the array
+
+   2. List-based
+   Each node in the tree contain two pointers
+   One pointer points to the left child, second pointer points to right child
+
+   Pros: Good to saving non full tree and skew tree. Which doesn't waste memory space.
+         Good to expand, without futher memoery realloctaion.
+
+   Cons: Bad to save full tree, which waste a lot of memory saving pointers
+         And also have a access time worst case of O(h)
+
+
+------------Algorithm------------------
+
+1. Bubble sort
+   Bubble sort is a sorting algorithm based on swapping
+   At each iteration, we run through the vector and check two elements value
+   Swap if the order is not correct.
+   In each iteration, we can make at least one element at the end of vector sorted
+   if there are n elements needs to be sorted
+   So the worst case we need to make n^2 calculation
+   Time complexity os O(n^2)
+
+For space complexity is O(n), bubble sort doesn't use any extra space.
+
+2. Insertion sort 
+   1. divide the original array into sorted and unsorted part
+   2. at each iteration, extract an element from unsorted array
+   3. move the sorted array and leave a empty index
+   4. insert the extrated element into empty index
+
+3. selection sort
+   1. cursor = 0
+   2. select the min element after cursor(index) then swap with cursor(index)
+   3. cursor++
+
+4. quick sort
+   Quick sort is done by recurssive partitioning
+   Partition: select a pivot, then put the elements that less then the pivot left
+
+   pseudo code:
+   QuickSort(array, head, tail) {
+      pivot_index = partition(array, head, tail)
+      QuickSort(head, pivot_index-1);
+      QuickSort(pivot_index+1);
+   }
+
+5. merge sort
+   Merge Sort is also a recurssive sorting algorithm
+   It is done by merging two sorted vectors into one sorted vectors
+
+   1. split the vector into small sub vectors (1 or 2 elements)
+   2. merge the small sub vectors, merge order is based on split order!!
+   3. merge all
+
+   {5, 4, 3, 2, 1}
+   {5, 4, 3}{2, 1}
+   {5, 4}{3}{2}{1}
+   {5}{4}{3}{2}{1}
+   {4, 5}{3}{2}{1}
+   {3, 4, 5}{1, 2}
+   {1, 2, 3, 4, 5}
+
+6. Radix sort
+   Radix sort is a sorting algorithm based on count sort
+   Count sort is good for sorting numbers within a specific range
+
+   vec:   {2, 3, 2, 4, 1}
+   it iter through the vector then add to count index is a number appears
+   index:  0  1  2  3  4
+   count: {0, 1, 2, 1, 1}
+
+   then convert the count vector into accumulation form
+   count: {0, 1, 3, 4, 5}
+
+   now we can utilize the vector and count array to sort
+   output: {1, 2, 2, 3, 4}
+
+   Radix sort is accomplished by first finding the max number in vector
+   then decide the maximun exp
+
+   then doing count sort for several times
+   because count sort is very fast in small range of numbers
+   Radix sort is good within a smaller range of numbers
+
+7. bucket sort
+   Bucket Sort is a sorting algorithm based on interval
+   It must work with another ordinary sorting algorithm
+   In this implementation we use insertion sort
+
+   1. get the max and min value of the vector
+   2. calculate the bucket number and interval
+      buckets = max - min + 1
+      interval = (max - min) / (n_buckets - 1)
+   3. put elements in original array into buckets according to its interval
+   4. sort within each bucket
+   5. concatenate buckets and generate the output
+
+

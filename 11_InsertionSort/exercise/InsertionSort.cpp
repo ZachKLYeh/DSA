@@ -48,7 +48,7 @@ template<typename T>
 void InsertionSort(vector<T>& vec) {    
     for (int i = 1; i < vec.size(); i++) { // i is the boundary of sorted and unsorted array
         
-        int key = vec[i]; // key is the first unsorted element
+        T key = vec[i]; // key is the first unsorted element
         int j = i - 1; // j is the cursor in sorted array
 
         while (j >= 0 && vec[j] > key) {
