@@ -44,9 +44,9 @@ For each datastructure, we will do a small introduction, then discuss the pros a
    There are two main implementation of a binary tree
    1. Array-based
    the index of array is like this
-               A
-            /   \
-         B       C
+                A
+              /   \
+            B       C
          /    \  /    \   
          D    E  F    G
 
